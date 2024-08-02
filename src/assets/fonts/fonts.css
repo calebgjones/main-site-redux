@@ -1,0 +1,26 @@
+/* Fonts */
+
+@font-face {
+    font-family: 'kbdunktank';
+    src: url('../../assets/fonts/Kbdunktank.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'kbgoogleyeyes';
+    src: url('../../assets/fonts/Kbgoogleyeyes.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'kbluckyclover';
+    src: url('../../assets/fonts/Kbluckyclover.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'kbplanetearth';
+    src: url('../../assets/fonts/Kbplanetearth.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'kbwhenpigsfly';
+    src: url('../../assets/fonts/Kbwhenpigsfly.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'kbwitchinghour';
+    src: url('../../assets/fonts/Kbwitchinghour.ttf') format('truetype');
+}

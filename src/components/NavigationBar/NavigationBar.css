@@ -1,0 +1,61 @@
+#titleClickContent {
+    display: block;
+    height: 50%;
+    width: 50%;
+}
+
+#navContainer {
+    padding: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    position: fixed;
+    text-align: center;
+    background-color: #93b5c6;
+}
+
+#navBackground {
+    display: flex;
+    flex-direction: row;
+}
+
+#titleContent {
+    font-size: 40pt;
+    font-weight: bold;
+    color: black;
+    position: static;
+    margin: 0px auto 10px auto;
+    padding: 0 0 5px 0;
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style-type: none;
+    margin: auto;
+    left: 0;
+    right: 0;
+    padding: 0;
+    overflow: scrollx;
+    position: fixed;
+    top: 65px;
+    background-color: black;
+    z-index: 10;
+}
+
+li {
+    font-size: 18pt;
+    float: left;
+    padding: 5px 10px;
+}   
+
+li:hover {
+    background-color: rgb(64, 64, 64);
+    border-radius: 2px;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}

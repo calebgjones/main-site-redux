@@ -1,61 +1,126 @@
-#titleClickContent {
-    display: block;
-    height: 50%;
-    width: 50%;
-}
-
 #navContainer {
-    padding: 0;
-    left: 0;
-    right: 0;
     top: 0;
+    display: flex; 
+    justify-content: center;
     position: fixed;
-    text-align: center;
-    background-color: #93b5c6;
+    background-color: #3f403f;
+    width: 100%;
+    z-index: 99;
+    padding: 5px;
+    border-bottom: 5px solid #A67F8E;
 }
 
-#navBackground {
+.titleContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    text-align: left;
 }
 
-#titleContent {
-    font-size: 40pt;
-    font-weight: bold;
-    color: black;
-    position: static;
-    margin: 0px auto 10px auto;
-    padding: 0 0 5px 0;
+#navTitle {
+    color: white;
+    font-size: 26pt;
+}
+
+#navBirthday {
+    color: white;
+    font-size: fit-content;
+    margin-top: -5px;
+    transition: visibillity 0.2s ease-in-out;
+}
+
+#titleSmiley {
+    color: white;
+    font-size: 16pt;
+    margin: 7px -30px 10px 5px;
+    transition: visibillity 0.2s ease-in-out;
+    width: 20px;
+}
+
+nav {
+    margin: auto 0;
 }
 
 ul {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
     list-style-type: none;
-    margin: auto;
-    left: 0;
-    right: 0;
-    padding: 0;
-    overflow: scrollx;
-    position: fixed;
-    top: 65px;
-    background-color: black;
-    z-index: 10;
+    text-align: center;
 }
 
 li {
-    font-size: 18pt;
-    float: left;
-    padding: 5px 10px;
-}   
+    align-content: center;
+    font-size: 13pt;
+    font-family: panton-light-caps;
+    font-weight: 120;
+    background-color: none;
+    height: 30px;
+    width: 100px;
+    color: white;
 
-li:hover {
-    background-color: rgb(64, 64, 64);
-    border-radius: 2px;
+    transition: width 0.2s ease-in-out;
+}
+
+#navInner {
+    border-right: white 2px solid;
+    transition: background-color 0.2s, color 0.2s;
+
+}
+
+#navOuter {
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#navInner:hover {
+    background-color: rgb(120, 120, 120);
+}
+
+#navOuter:first-child {
+    border-right: white 2px solid;
+}
+
+#navOuter:first-child:hover {
+    background-color: rgb(120, 120, 120);
+    border-radius: 3px 0 0 3px;
+}
+
+#navOuter:last-child:hover {
+    background-color: rgb(120, 120, 120);
+    border-radius: 0 3px 3px 0;
 }
 
 a {
     text-decoration: none;
-    color: #ffffff;
+    color: black;
+}
+
+@media screen and (width < 608px) {
+
+    .titleContainer {
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        margin: -10px 0 0 0px;
+    }
+
+    #navTitle {
+        font-size: 20pt;
+        margin: 10px -60px 0 0;
+    }
+
+    #titleSmiley {
+        visibility: hidden;
+    }
+
+    #navBirthday {
+        visibility: hidden;
+    }
+
+    li {
+        font-size: 10pt;
+        width: 70px;
+    }
+
+    #navOuter:last-child {
+        margin-right: 30px;
+    }
+    
 }

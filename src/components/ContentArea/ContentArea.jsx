@@ -1,29 +1,25 @@
 import './ContentArea.css';
 import Content from './Content.js';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+
 
 function ContentArea() {
-
-const [contentHeader, setContentHeader] = useState("loading header...");
-const [contentBody, setContentBody] = useState("loading content...");
-
-
-useEffect(() => {
-        setContentHeader([Content[0].header]);
-        setContentBody([Content[0].body]);
-}, []);
-
+    const contentArray = Content;
     return (
-        <div id="contentContainer">
-            {Content.map((item, index) => (
-                <div key={index}>
-                    <h1 id={item.section} className="contentHeader">{item.header}</h1>
-                    <p className="contentBody">{item.body}</p>
+        <div className='contentArea'>
+            {contentArray.map((content, index) => (
+                <div key={index} className={`contentContainer${content.id}`} id={`${content.section}`} style={{ zIndex: `2` }}>
+                    <div>
+                        <h1 className="contentHeader">{content.header}</h1>
+                        <p className="contentBody">{content.body.split('\n').map((line, i) => (
+                            <span key={i}>
+                                {line}
+                                <br />
+                            </span>
+                        ))}</p>
+                    </div>
                 </div>
             ))}
         </div>
-    )
-}
-
+    )};
 export default ContentArea;

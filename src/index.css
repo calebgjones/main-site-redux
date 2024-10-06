@@ -8,58 +8,35 @@
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-/* Color Transition Animations */
-
-@keyframes bgColorTransition {
-  0% { background-color: rgb(255, 120, 0); }
-  25% { background-color: rgb(0, 120, 0); }
-  50% { background-color: rgb(0, 120, 255); }
-  75% { background-color: rgb(255, 120, 255); }
-  100% { background-color: rgb(255, 120, 0); }
-}
-
-@keyframes bgColorTransitionRev {
-  0% { background-color: rgb(0, 135, 255); }
-  25% { background-color: rgb(255, 135, 255); }
-  50% { background-color: rgb(255, 135, 0); }
-  75% { background-color: rgb(0, 135, 0); }
-  100% { background-color: rgb(0, 135, 255); }
-}
-
-@keyframes fontColorTransition {
-  0% { color: rgb(255, 120, 0); }
-  25% { color: rgb(0, 120, 0); }
-  50% { color: rgb(0, 120, 255); }
-  75% { color: rgb(255, 120, 255); }
-  100% { color: rgb(255, 120, 0); }
+#root {
+  justify-content: center;
+  align-items: center;
+  
 }
 
 body {
-  background-color: #843B62; 
-}
-
-#root {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
-}
-  
-#footer-copyright {
-  background-color: #9d608e;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
   margin: 0;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  justify-content: center;
+  background-color: #CED3DC;
 }
 
-#footer-copyright-text {
-  color: black;
-  font-size: 11pt;
-  padding-left: 5px;
+.footer {
+  translate: 0 70px;
+  margin: auto;
+  padding: 0 10px;
+  background-color: #3f403fb6;
+  width: fit-content;
+  /* width: 80%; */
+  border-radius: 10px;
+}
+
+#socialMedia i{
+  font-size: 30pt;
+  color: white;
+  margin: 5px 5px 5px 5px;
+  transition: color 0.2s ease-in-out;
+}
+
+#socialMedia i:hover{
+  color: #b1b5bc;
 }

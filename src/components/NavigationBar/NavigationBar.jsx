@@ -1,55 +1,67 @@
-import '../../assets/fonts/fonts.css';
+import '/src/fonts.css';
 import './NavigationBar.css';
 import { useState, useEffect } from 'react';
 
 function NavigationBar() {
 
-  const [titleFont, setTitleFont] = useState("kbdunktank");
+  const dt1 = new Date("2000-09-15"); //Birth date
+  const dt2 = new Date(); //Current date
 
+  const [titleSmiley, setTitleSmiley] = useState(':)');
+  const smileys = [':)', ':D', ':P', ':O'];
 
-  function setRandomTitleFont() {
-    const fonts = ["kbdunktank", "kbgoogleyeyes", "kbluckyclover", "kbplanetearth", "kbwhenpigsfly", "kbwitchinghour"];
-    const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
-    setTitleFont(randomFont);
-    document.getElementById("titleContent").style.fontFamily = randomFont;
+  function changeSmiley() {
+    console.log('Smiley changed');
+    setTitleSmiley(smileys[Math.floor(Math.random() * smileys.length)]);
   }
 
+  function dateDiff(dt2, dt1) {
+      const diffTime = Math.abs(dt2 - dt1);
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      
+      let years = Math.floor(diffDays / 365.25);
+      let remainingDays = diffDays % 365.25;
+      let months = Math.floor(remainingDays / 30);
+      remainingDays = Math.floor(remainingDays % 30);
+
+      if (months === 12) {
+        months = 0;
+        years += 1;}
+
+    if (isNaN(months) && isNaN(remainingDays) && isNaN(years)) {
+      return ''; 
+    } else if (months === 0 && remainingDays === 0) {
+      return 'It\'s my birthday, I\'m ' + years + '!';
+    } else if (months === 0) {
+      return `${years} years and ${remainingDays} days old!`;
+    } else if (remainingDays === 0) {
+      return `${years} years and ${months} months old!`;
+    }else {
+      return `${years} years, ${months} months, and ${remainingDays} days old!`;
+    }
+  }
+  
   useEffect(() => {
-    const interval = setInterval(setRandomTitleFont, 1000);
+    const interval = setInterval(changeSmiley, 5000);
     return () => clearInterval(interval);
   }, []);
-  const caleb = ["C", "a", "l", "e", "b", "!"];
 
   return (
-    <div id="navContainer">
+    <div className="noselect" id="navContainer">
+      <div className="titleContainer">
+        <div id="navTitle">Caleb Jones</div>
+        <div id="navBirthday">{dateDiff(dt2, dt1)}</div>
+      </div>
+      <div id="titleSmiley" onClick={changeSmiley}>{titleSmiley}</div>
       <a>
-        <div id="navBackground">
-          {[caleb].map((char, index) => (
-            <h1
-              key={index}
-              id="titleContent"
-              {...caleb.map((char, index) => (
-                <h1
-                  key={index}
-                  id={`titleContent-${index}`}
-                  style={{ fontFamily: titleFont }}
-                >
-                  {char}
-                </h1>
-              ))}
-            >
-              {char}
-            </h1>
-          ))}
-        </div>
+        <div id="navBackground"></div>
       </a>
       <nav>
         <ul>
-          <a href="#"><li>Home</li></a>
-          <a href="#gallery"><li>Gallery</li></a>
-          <a href="#portfolio"><li>Portfolio</li></a>
-          <a href="#about"><li>About</li></a>
-          <a href="#contact"><li>Contact</li></a>
+          <a id="navOuter" href="#"><li>Home</li></a>
+          <a id="navInner" href="#about"><li>About</li></a>
+          <a id="navInner" href="#projects"><li>Projects</li></a>
+          <a id="navOuter" href="#contact"><li>Contact</li></a>
         </ul>
       </nav>
     </div>

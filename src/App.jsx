@@ -63,8 +63,8 @@ function App() {
         <Link to="https://www.instagram.com/ok.lub" target="_blank" rel="noopener noreferrer">
           <i className="fab fa-instagram"></i>
         </Link>
-        <Link to="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-          <i className="fab fa-twitter"></i>
+        <Link to="https://www.github.com" target="_blank" rel="noopener noreferrer">
+          <i className="fab fa-github"></i>
         </Link>
         <Link to="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
           <i className="fab fa-linkedin"></i>

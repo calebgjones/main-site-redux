@@ -6,26 +6,37 @@ import '/src/index.css';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import './components/Rain/rain.css';
+import axios from 'axios';
 
 function App() {
+
+  const [currentWeather, setCurrentWeather] = useState('');
+  // var [bubbleColors, setBubbleColors] = useState(['#69A297', 'hwb(12 43% 11% / 0.5', '#E2856E', 'hwb(168 41% 36% / 0.5)']);
+
+  var [bubbleColors, setBubbleColors] = useState('white');
+  // var [bubbleRadius, setBubbleRadius] = useState('10');
+
+  useEffect(() => {
+    axios.get('https://j9dund2fhk.execute-api.us-west-1.amazonaws.com/main/weather/')
+      .then((response) => {
+        setCurrentWeather(response.data.weather[0].main);
+        // console.log(currentWeather);
+      })
+      .catch((error) => {
+        console.error('Error fetching weather data:', error);
+      });
+      }, []);
+
   const createNotification = (message, type) => {
     notify(message, type);
   }
 
-  const bubbleColors = ['#69A297', 'hwb(12 43% 11% / 0.5', '#E2856E', 'hwb(168 41% 36% / 0.5)']
-  // const bubbleColors = ['rgba(108, 108, 108, 0.527)']
-  // const bubbleColors = ['white'];
-
   useEffect(() => {
     function rain() {
         const rainContainer = document.querySelector(".rain");
-      
-        if (!rainContainer) {
-          console.error("Rain container not found");
-          return;
-        }
 
-        if (rainContainer) {      
+        if (rainContainer) {    
+
           for (let i = 0; i < 25; i++) {
             let r = Math.round(16 + 64 * Math.random());
             // let r = 10; // Small raindrops
@@ -47,13 +58,28 @@ function App() {
     }
 
     rain();
-}, []);
+}, [currentWeather]);
 
   return (
     <>
       <main>
           <div className="rain" aria-hidden="true"></div>
       </main>
+
+      {
+         useEffect(() => {
+          setTimeout(() => {
+            if (currentWeather === "Clear") {
+              console.log('clear');
+              setBubbleColors('black')
+              console.log(document.querySelector('.drop').style);
+            } else {
+              setBubbleColors(['green'])
+            }
+          }, 1000);
+          } )
+      }
+
       <Notification />
       <NavigationBar />
       <ContentArea />

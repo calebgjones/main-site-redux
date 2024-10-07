@@ -11,7 +11,6 @@ function NavigationBar() {
   const smileys = [':)', ':D', ':P', ':O'];
 
   function changeSmiley() {
-    console.log('Smiley changed');
     setTitleSmiley(smileys[Math.floor(Math.random() * smileys.length)]);
   }
 

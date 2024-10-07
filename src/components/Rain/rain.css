@@ -12,7 +12,6 @@
 	border-radius: 50%;
 	translate: 0 -100%;
 	animation: fall var(--t) ease-in var(--dt) infinite;
-	animation-direction: reverse;
 	/* Goat image */
 	/* background-image: url("https://i.pinimg.com/originals/f2/80/67/f2806702779aa176b065df730671e8e3.png");  */
 	/* background-size: contain; */

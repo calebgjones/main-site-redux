@@ -10,12 +10,18 @@ import axios from 'axios';
 
 function App() {
 
-  const [currentWeather, setCurrentWeather] = useState('');
-  // var [bubbleColors, setBubbleColors] = useState(['#69A297', 'hwb(12 43% 11% / 0.5', '#E2856E', 'hwb(168 41% 36% / 0.5)']);
+  const createNotification = (message, type) => {
+    notify(message, type);
+  }
 
-  var [bubbleColors, setBubbleColors] = useState('white');
-  // var [bubbleRadius, setBubbleRadius] = useState('10');
+  // Bubble data
+  const [bubbleQty, setBubbleQty] = useState(25);
+  const [bubbleColors, setBubbleColors] = useState([]);
+  const [bubbleDirection, setBubbleDirection] = useState('reverse');
+  const [bubbleRadius, setBubbleRadius] = useState(Math.round(1 + 64 * Math.random()));
+  const [bubbleSpeed, setBubbleSpeed] = useState(+(10 + 2 * Math.random()).toFixed(2));
 
+// Pull weather data, set bubble to match
   useEffect(() => {
     axios.get('https://j9dund2fhk.execute-api.us-west-1.amazonaws.com/main/weather/')
       .then((response) => {
@@ -27,59 +33,84 @@ function App() {
       });
       }, []);
 
-  const createNotification = (message, type) => {
-    notify(message, type);
-  }
-
-  useEffect(() => {
-    function rain() {
-        const rainContainer = document.querySelector(".rain");
-
-        if (rainContainer) {    
-
-          for (let i = 0; i < 25; i++) {
-            let r = Math.round(16 + 64 * Math.random());
-            // let r = 10; // Small raindrops
-            let x = Math.round(100 * Math.random());
-            let t = +(10 + 2 * Math.random()).toFixed(2);
-            let dt = +(Math.random() * t).toFixed(2);
-        
-            const drop = document.createElement("div");
-            drop.classList.add("drop");
-            drop.style.setProperty('--r', `${r}px`);
-            drop.style.setProperty('--x', `${x}%`);
-            drop.style.setProperty('--t', `${t}s`);
-            drop.style.setProperty('--dt', `-${dt}s`);
-            drop.style.setProperty('background-color', bubbleColors[Math.floor(Math.random() * bubbleColors.length)]);
+      useEffect(() => {
+        const getWeather = async () => {
+          const response = await axios.get('https://j9dund2fhk.execute-api.us-west-1.amazonaws.com/main/weather');
+          // const weather = await response.data.weather[0].main;
+          const weather = 'Clouds'
+    
+          console.log(await weather);
+    
+          if (weather === 'Clear' || weather === 'Clouds') {
+            setBubbleQty(25);
+            setBubbleRadius(Math.round(12 + 64 * Math.random()));
+            setBubbleColors(['#69a297C4', '#e2856eC4', '#e2856e', '#69a297']);
+          } else if (weather === 'Rain') {
+            setBubbleDirection('normal');
+            setBubbleRadius(10);
+            setBubbleSpeed(+(1 + 2 * Math.random()).toFixed(2));
+            setBubbleColors(['#655dd9']);
+          } else if (weather === 'Snow' || weather === 'Hail') {
+            setBubbleQty(500);
+            setBubbleDirection('normal');
+            setBubbleRadius(5);
+            setBubbleColors(['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff']);
+          } else if (weather === 'Thunderstorm') {
+            setBubbleColors(['#ffff00', '#ffff00', '#ffff00', '#ffff00', '#ffff00']);
+          } else if (weather === 'Fog') {
             
-            rainContainer.appendChild(drop);
-          }
-    }
-    }
+            setBubbleColors(['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff']);
+          } else if (weather === 'Mist') {
+            
+            setBubbleColors(['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff']);
+          } 
+        }
+    
+        getWeather();
+      }, [])
+  
+  useEffect(() => {
+      if ( bubbleColors.length === 0 ) {
+        return;
+      }
 
-    rain();
-}, [currentWeather]);
+      function rain() {
+          const rainContainer = document.querySelector(".rain");
+        
+          if (!rainContainer) {
+            console.error("Rain container not found");
+            return;
+          }
+  
+          if (rainContainer) {      
+            for (let i = 0; i < bubbleQty; i++) {
+              let r = bubbleRadius;
+              let x = Math.round(100 * Math.random());
+              let t = bubbleSpeed;
+              let dt = +(Math.random() * t).toFixed(2);
+          
+              const drop = document.createElement("div");
+              drop.classList.add("drop");
+              drop.style.setProperty('--r', `${r}px`);
+              drop.style.setProperty('--x', `${x}%`);
+              drop.style.setProperty('--t', `${t}s`);
+              drop.style.setProperty('--dt', `-${dt}s`);
+              drop.style.setProperty('background-color', bubbleColors[Math.floor(Math.random() * bubbleColors.length)]);
+              drop.style.setProperty('animation-direction', bubbleDirection);
+  
+              rainContainer.appendChild(drop);
+            }
+      }
+      }
+  
+      rain();
+  }, [bubbleColors])
 
   return (
     <>
       <main>
           <div className="rain" aria-hidden="true"></div>
       </main>
-
-      {
-         useEffect(() => {
-          setTimeout(() => {
-            if (currentWeather === "Clear") {
-              console.log('clear');
-              setBubbleColors('black')
-              console.log(document.querySelector('.drop').style);
-            } else {
-              setBubbleColors(['green'])
-            }
-          }, 1000);
-          } )
-      }
-
       <Notification />
       <NavigationBar />
       <ContentArea />

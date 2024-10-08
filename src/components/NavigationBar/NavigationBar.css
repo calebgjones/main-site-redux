@@ -7,7 +7,7 @@
     width: 100%;
     z-index: 99;
     padding: 5px;
-    border-bottom: 5px solid #A67F8E;
+    border-bottom: 3px solid white;
 }
 
 .titleContainer {
@@ -34,10 +34,6 @@
     margin: 7px -30px 10px 5px;
     transition: visibillity 0.2s ease-in-out;
     width: 20px;
-}
-
-nav {
-    margin: auto 0;
 }
 
 ul {
@@ -92,18 +88,20 @@ a {
     color: black;
 }
 
-@media screen and (width < 608px) {
+@media screen and (width < 700px) {
 
     .titleContainer {
-        display: flex;
-        flex-direction: row;
-        text-align: center;
-        margin: -10px 0 -20px 0;
+        justify-content: center;
+        margin: 20px 0 0 0;
+    }
+
+    #navContainer {
+        height: 50px;
     }
 
     #navTitle {
         font-size: 20pt;
-        margin: 10px -60px 0 0;
+        width: fit-content;
     }
 
     #titleSmiley {
@@ -112,6 +110,10 @@ a {
 
     #navBirthday {
         visibility: hidden;
+    }
+
+    nav {
+        margin-left: -50px;
     }
 
     li {

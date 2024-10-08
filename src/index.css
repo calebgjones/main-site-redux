@@ -18,6 +18,7 @@ body {
   margin: 0;
   justify-content: center;
   background-color: #CED3DC;
+  transition: background-color 1s ease-in-out;
 }
 
 .footer {
@@ -30,13 +31,28 @@ body {
   border-radius: 10px;
 }
 
+#socialMedia {
+  border-bottom: #CED3DC 1px solid;
+}
+
 #socialMedia i{
   font-size: 30pt;
   color: white;
-  margin: 5px 5px 5px 5px;
+  margin: 5px;
   transition: color 0.2s ease-in-out;
 }
 
 #socialMedia i:hover{
   color: #b1b5bc;
 }
+
+.footerData {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: 12pt;
+  padding: 5px 0 10px 0;
+  float: center;
+  text-align: center;
+}
+

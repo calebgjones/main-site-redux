@@ -15,38 +15,52 @@ function App() {
   }
 
   // Bubble data
-  const [bubbleQty, setBubbleQty] = useState(25);
+
+  let baseBubbleQty = 25;
+  let baseBubbleDirection = 'reverse';
+  let baseBubbleRadius = Math.round(16 + 64 * Math.random());
+  let baseBubbleSpeed = +(10 + 2 * Math.random()).toFixed(2);
+
+
+  const [bubbleQty, setBubbleQty] = useState(baseBubbleQty);
   const [bubbleColors, setBubbleColors] = useState([]);
-  const [bubbleDirection, setBubbleDirection] = useState('reverse');
-  const [bubbleRadius, setBubbleRadius] = useState(Math.round(16 + 64 * Math.random()));
-  const [bubbleSpeed, setBubbleSpeed] = useState(+(10 + 2 * Math.random()).toFixed(2));
+  const [bubbleDirection, setBubbleDirection] = useState(baseBubbleDirection);
+  const [bubbleRadius, setBubbleRadius] = useState(baseBubbleRadius);
+  const [bubbleSpeed, setBubbleSpeed] = useState(baseBubbleSpeed);
+
 
   const [dayTime, setDayTime] = useState('');
 
+  // Set time
   var startHour = new Date().getHours();
+  var cutHour = startHour % 12;
   var startMinute = new Date().getMinutes();
   var startSecond = new Date().getSeconds();
-
-
   var activeHour = startHour;
   var activeMinute = startMinute;
   var activeSecond = startSecond;
+  var amPm = startHour >= 12 ? 'PM' : 'AM';
 
-
+  
     setInterval(() => {
       activeSecond++;
-      if (activeSecond === 60) {
+      if (activeSecond > 60) {
         activeSecond = 1;
         activeMinute++;
       }
       if (activeMinute === 60) {
-        activeMinute = 1;
+        activeMinute = 0;
         activeHour++;
       }
-      if (activeHour === 24) {
-        activeHour = 0;
+      if (activeHour > 24) {
+        activeHour = 1;
       }
-      document.getElementById('footerTime').innerText = `${activeHour}:${activeMinute}:${activeSecond}`;
+      if (activeSecond > 0 && activeSecond < 10) {
+        activeSecond = `0${activeSecond}`;
+      } if (activeMinute >= 0 && activeMinute < 10) {
+        activeMinute = activeMinute.toString().padStart(2, '0');
+      }
+      document.getElementById('footerTime').innerText = `${cutHour}:${activeMinute}:${activeSecond} ${amPm}`;
     }, 1000);
 
 
@@ -65,7 +79,8 @@ function App() {
         const getWeather = async () => {
           const response = await axios.get('https://j9dund2fhk.execute-api.us-west-1.amazonaws.com/main/weather');
           const weather = await response.data.weather.main;
-          // const weather = 'Rain';
+
+          // const weather = 'Snow';
 
           const detailedWeather = (await response.data.weather.description).charAt(0).toUpperCase() + (await response.data.weather.description).slice(1);
 
@@ -90,29 +105,45 @@ function App() {
             }
     
           if (weather === 'Clear' || weather === 'Clouds') {
-            setBubbleQty(25);
-            setBubbleRadius(Math.round(12 + 64 * Math.random()));
+            setBubbleQty(baseBubbleQty);
+            setBubbleDirection(baseBubbleDirection);
+            setBubbleRadius(baseBubbleRadius);
+            setBubbleSpeed(baseBubbleSpeed);
             setBubbleColors(['#69a297C4', '#e2856eC4', '#e2856e', '#69a297']);
 
           } else if (weather === 'Rain') {
+            setBubbleQty(100);
             setBubbleDirection('normal');
             setBubbleRadius(10);
             setBubbleSpeed(+(1 + 2 * Math.random()).toFixed(2));
             setBubbleColors(['rgba(101, 93, 217, 0.6)']);
 
           } else if (weather === 'Snow' || weather === 'Hail') {
-            setBubbleQty(500);
+            setBubbleQty(150);
             setBubbleDirection('normal');
-            setBubbleRadius(5);
+            setBubbleRadius(2 + 10 * Math.random());
+            setBubbleSpeed(+(4 + 2 * Math.random()).toFixed(2));
             setBubbleColors(['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff']);
 
           } else if (weather === 'Thunderstorm') {
+            setBubbleQty(baseBubbleQty);
+            setBubbleDirection(baseBubbleDirection);
+            setBubbleRadius(baseBubbleRadius);
+            setBubbleSpeed(baseBubbleSpeed);
             setBubbleColors(['#ffff00', '#ffff00', '#ffff00', '#ffff00', '#ffff00']);
 
           } else if (weather === 'Fog') {
-            setBubbleColors(['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff']);
+            setBubbleQty(baseBubbleQty);
+            setBubbleDirection(baseBubbleDirection);
+            setBubbleRadius(Math.round(10 + 200 * Math.random()));
+            setBubbleSpeed(baseBubbleSpeed);
+            setBubbleColors(['rgba(255, 255, 255, 0.5)', 'rgba(255, 255, 255, 0.75)', 'rgba(255, 255, 255, 0.25)', 'rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.15)']);
 
           } else if (weather === 'Mist') {
+            setBubbleQty(baseBubbleQty);
+            setBubbleDirection(baseBubbleDirection);
+            setBubbleRadius(baseBubbleRadius);
+            setBubbleSpeed(baseBubbleSpeed);
             setBubbleColors(['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff']);
           } 
         }
@@ -125,6 +156,15 @@ function App() {
         return;
       }
 
+      function removeRain() {
+        const rainContainer = document.querySelector(".rain")
+        if (rainContainer) {
+          document.querySelectorAll('.drop').forEach(e => e.remove());
+          // rainContainer.innerHTML = "";
+        }
+      }
+
+
       function rain() {
           const rainContainer = document.querySelector(".rain");
         
@@ -136,7 +176,7 @@ function App() {
           if (rainContainer) {      
             for (let i = 0; i < bubbleQty; i++) {
               let r = bubbleRadius;
-              let x = Math.round(100 * Math.random());
+              let x = Math.round(100 * Math.random()) - 1;
               let t = bubbleSpeed;
               let dt = +(Math.random() * t).toFixed(2);
           
@@ -153,7 +193,7 @@ function App() {
             }
       }
       }
-  
+      removeRain();
       rain();
   }, [bubbleColors])
   

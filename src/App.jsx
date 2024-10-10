@@ -36,11 +36,11 @@ function App() {
     setInterval(() => {
       activeSecond++;
       if (activeSecond === 60) {
-        activeSecond = 0;
+        activeSecond = 1;
         activeMinute++;
       }
       if (activeMinute === 60) {
-        activeMinute = 0;
+        activeMinute = 1;
         activeHour++;
       }
       if (activeHour === 24) {
@@ -163,6 +163,7 @@ function App() {
     <main>
         <div className="rain" aria-hidden="true"></div>
     </main>
+    
     <ContentArea />
     <div className="noselect">
     <Notification />

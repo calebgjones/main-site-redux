@@ -80,7 +80,9 @@ function App() {
           const response = await axios.get('https://j9dund2fhk.execute-api.us-west-1.amazonaws.com/main/weather');
           const weather = await response.data.weather.main;
 
-          // const weather = 'Snow';
+          // const weather = 'Clear';
+
+          const sunsetBg = 'linear-gradient(0deg, rgba(225,119,119,1) 0%, rgba(228,184,101,1) 29%, rgba(245,229,95,1) 62%, rgba(142,142,142,1) 100%)';
 
           const detailedWeather = (await response.data.weather.description).charAt(0).toUpperCase() + (await response.data.weather.description).slice(1);
 
@@ -88,26 +90,28 @@ function App() {
 
           const bodyBackground = document.querySelector('body');
           const currentHour = new Date().getHours();
-          // const currentHour = 1;
-
+          // const currentHour = 8;
 
             if (currentHour >= 20) {
             bodyBackground.style.backgroundColor = 'hsla(0, 0%, 17%, 1)';
             setDayTime('Night');
-            } else if (currentHour >= 16 && currentHour < 20) {
-            bodyBackground.style.backgroundColor = 'hsla(1, 0%, 39%, 1)';
+            } else if (currentHour >= 17 && currentHour < 20) {
+            bodyBackground.style.backgroundColor = '#b08431';
             setDayTime('Evening');
-            } else if (currentHour >= 8 && currentHour < 16 ) {
-              bodyBackground.style.backgroundColor = ('#DB9D4A');
+            } else if (currentHour >= 12 && currentHour < 17 ) {
+              bodyBackground.style.backgroundColor = ('#5B618A');
               setDayTime('Afternoon')
-            } else if (currentHour >= 4 && currentHour < 8) {
-            bodyBackground.style.backgroundColor = '#fee197';
+              console.log(currentHour);
+            } else if (currentHour >= 5 && currentHour < 12) {
+            bodyBackground.style.background = sunsetBg;
+            console.log(sunsetBg);
             setDayTime('Morning');
-            } else if (currentHour >= 0 && currentHour < 4) {
+            } else if (currentHour >= 0 && currentHour < 5) {
               bodyBackground.style.backgroundColor = 'hsla(0, 0%, 17%, 1)'
               setDayTime('Dawn');
             }
              else {
+              bodyBackground.style.background = 'black';
             console.error('Error setting background color');
             }
     
@@ -139,7 +143,7 @@ function App() {
             setBubbleSpeed(baseBubbleSpeed);
             setBubbleColors(['#ffff00', '#ffff00', '#ffff00', '#ffff00', '#ffff00']);
 
-          } else if (weather === 'Fog') {
+          } else if (weather === 'Fog' || weather === 'Haze') {
             setBubbleQty(baseBubbleQty);
             setBubbleDirection(baseBubbleDirection);
             setBubbleRadius(Math.round(10 + 200 * Math.random()));

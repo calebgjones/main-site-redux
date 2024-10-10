@@ -17,8 +17,9 @@
 body {
   margin: 0;
   justify-content: center;
-  background-color: #CED3DC;
+  /* background-color: #CED3DC; */
   transition: background-color 1s ease-in-out;
+  height: 100vh;
 }
 
 .footer {

@@ -87,8 +87,8 @@ function App() {
           document.getElementById('footerWeather').innerText = "Weather: " + detailedWeather;
 
           const bodyBackground = document.querySelector('body');
-          // const currentHour = new Date().getHours();
-          const currentHour = 1;
+          const currentHour = new Date().getHours();
+          // const currentHour = 1;
 
 
             if (currentHour >= 20) {

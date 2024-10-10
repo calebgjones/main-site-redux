@@ -105,7 +105,7 @@ function App() {
             setDayTime('Morning');
             } else if (currentHour >= 0 && currentHour < 4) {
               bodyBackground.style.backgroundColor = 'hsla(0, 0%, 17%, 1)'
-              setDayTime('Dusk');
+              setDayTime('Dawn');
             }
              else {
             console.error('Error setting background color');

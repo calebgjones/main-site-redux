@@ -87,8 +87,8 @@ function App() {
           document.getElementById('footerWeather').innerText = "Weather: " + detailedWeather;
 
           const bodyBackground = document.querySelector('body');
-          const currentHour = new Date().getHours();
-          // const currentHour = 21;
+          // const currentHour = new Date().getHours();
+          const currentHour = 1;
 
 
             if (currentHour >= 20) {
@@ -97,10 +97,17 @@ function App() {
             } else if (currentHour >= 16 && currentHour < 20) {
             bodyBackground.style.backgroundColor = 'hsla(1, 0%, 39%, 1)';
             setDayTime('Evening');
-            } else if (currentHour >= 0 && currentHour < 16) {
-            bodyBackground.style.backgroundColor = '#CED3DC';
-            setDayTime('Day');
-            } else {
+            } else if (currentHour >= 8 && currentHour < 16 ) {
+              bodyBackground.style.backgroundColor = ('#DB9D4A');
+              setDayTime('Afternoon')
+            } else if (currentHour >= 4 && currentHour < 8) {
+            bodyBackground.style.backgroundColor = '#fee197';
+            setDayTime('Morning');
+            } else if (currentHour >= 0 && currentHour < 4) {
+              bodyBackground.style.backgroundColor = 'hsla(0, 0%, 17%, 1)'
+              setDayTime('Dusk');
+            }
+             else {
             console.error('Error setting background color');
             }
     

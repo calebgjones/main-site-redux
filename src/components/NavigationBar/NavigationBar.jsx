@@ -5,7 +5,8 @@ import { useState, useEffect } from 'react';
 function NavigationBar() {
 
   const dt1 = new Date("2000-09-15"); //Birth date
-  const dt2 = new Date(); //Current date
+  // const dt2 = new Date(); //Current date
+  const dt2 = new Date("2024-10-16"); //Current date
 
   const [titleSmiley, setTitleSmiley] = useState(':)');
   const smileys = [':)', ':D', ':P', ':O'];
@@ -22,7 +23,7 @@ function NavigationBar() {
       let remainingDays = diffDays % 365.25;
       let months = Math.floor(remainingDays / 30);
       remainingDays = Math.floor(remainingDays % 30);
-
+    console.log(remainingDays);
       if (months === 12) {
         months = 0;
         years += 1;}
@@ -32,11 +33,19 @@ function NavigationBar() {
     } else if (months === 0 && remainingDays === 0) {
       return 'It\'s my birthday, I\'m ' + years + '!';
     } else if (months === 0) {
+      if (remainingDays > 1) {
       return `${years} years and ${remainingDays} days old!`;
+      } else if (remainingDays === 1) {
+        return `${years} years and ${remainingDays} day old!`;
+      }
     } else if (remainingDays === 0) {
       return `${years} years and ${months} months old!`;
     }else {
-      return `${years} years, ${months} months, and ${remainingDays} days old!`;
+      if (remainingDays > 1) {
+        return `${years} years, ${months} months, and ${remainingDays} days old!`;
+        } else if (remainingDays === 1) {
+          return `${years} years, ${months} months, and ${remainingDays} day old!`;
+        }
     }
   }
   

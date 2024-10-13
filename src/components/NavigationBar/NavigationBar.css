@@ -26,6 +26,7 @@
     font-size: fit-content;
     margin-top: -5px;
     transition: visibillity 0.2s ease-in-out;
+    width: 180px;
 }
 
 #titleSmiley {
@@ -91,8 +92,9 @@ a {
 @media screen and (width < 700px) {
 
     .titleContainer {
-        justify-content: center;
-        margin: 20px 0 0 0;
+        margin: 12px 20px 0 10px;
+        height: 40px;
+        width: 130px;
     }
 
     #navContainer {

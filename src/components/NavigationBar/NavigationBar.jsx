@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 function NavigationBar() {
 
   const dt1 = new Date("2000-09-15"); //Birth date
-  // const dt2 = new Date(); //Current date
-  const dt2 = new Date("2024-10-16"); //Current date
+  const dt2 = new Date(); //Current date
+  // const dt2 = new Date("2024-10-16"); //Current date
 
   const [titleSmiley, setTitleSmiley] = useState(':)');
   const smileys = [':)', ':D', ':P', ':O'];

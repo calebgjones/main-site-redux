@@ -8,12 +8,14 @@
     z-index: 99;
     padding: 5px;
     border-bottom: 3px solid white;
+    padding-bottom: 10px;
 }
 
 .titleContainer {
     display: flex;
     flex-direction: column;
     text-align: left;
+    margin-right: 10%;
 }
 
 #navTitle {
@@ -30,17 +32,21 @@
 }
 
 #titleSmiley {
+    display: block;
+    position: absolute;
     color: white;
     font-size: 16pt;
-    margin: 7px -30px 10px 5px;
     transition: visibillity 0.2s ease-in-out;
     width: 20px;
+    margin-left: 175px;
+    margin-top: 10px;
 }
 
 ul {
     display: flex;
     list-style-type: none;
     text-align: center;
+    padding: 0;
 }
 
 li {
@@ -52,35 +58,40 @@ li {
     height: 30px;
     width: 100px;
     color: white;
-
     transition: width 0.2s ease-in-out;
 }
 
 #navInner {
     border-right: white 2px solid;
     transition: background-color 0.2s, color 0.2s;
+    background-color: #545454;
 
 }
 
 #navOuter {
     transition: background-color 0.2s, color 0.2s;
+    background-color: #545454;
 }
 
 #navInner:hover {
-    background-color: rgb(120, 120, 120);
+    background-color: rgb(157, 157, 157);
 }
 
 #navOuter:first-child {
     border-right: white 2px solid;
-}
-
-#navOuter:first-child:hover {
-    background-color: rgb(120, 120, 120);
     border-radius: 3px 0 0 3px;
 }
 
+#navOuter:last-child {
+    border-radius: 0 3px 3px 0;
+}
+
+#navOuter:first-child:hover {
+    background-color: rgb(157, 157, 157);
+}
+
 #navOuter:last-child:hover {
-    background-color: rgb(120, 120, 120);
+    background-color: rgb(157, 157, 157);
     border-radius: 0 3px 3px 0;
 }
 
@@ -90,15 +101,16 @@ a {
 }
 
 @media screen and (width < 700px) {
-
-    .titleContainer {
-        margin: 12px 20px 0 10px;
-        height: 40px;
-        width: 130px;
+    
+    #navContainer {
+        height: 80px;
     }
 
-    #navContainer {
-        height: 50px;
+    .titleContainer {
+        height: 70px;
+        width: 70px;
+        text-align: center;
+        padding-right: 10px;
     }
 
     #navTitle {
@@ -116,6 +128,10 @@ a {
 
     nav {
         margin-left: -50px;
+    }
+
+    ul {
+        padding: 0 0 0 0;
     }
 
     li {

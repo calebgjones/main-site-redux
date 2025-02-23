@@ -18,12 +18,15 @@ function App() {
 
   let baseBubbleQty = 25;
   let baseBubbleDirection = 'reverse';
-  let baseBubbleRadius = Math.round(16 + 64 * Math.random());
+
+  /* Need to fix these to be random, currently pulling one size because 
+  they're being defined at one single random size/speed right here. */
+  let baseBubbleRadius = Math.round(16 + 64 * Math.random()); 
   let baseBubbleSpeed = +(10 + 2 * Math.random()).toFixed(2);
 
 
   const [bubbleQty, setBubbleQty] = useState(baseBubbleQty);
-  const [bubbleColors, setBubbleColors] = useState([]);
+  const [bubbleColors, setBubbleColors] = useState(['rgba(54, 54, 54, 1)','rgba(95, 30, 91, 1)','rgba(49, 30, 154, 1)','rgba(54, 54, 54, 0.5)','rgba(95, 30, 91, .5)','rgba(49, 30, 154, .5)']);
   const [bubbleDirection, setBubbleDirection] = useState(baseBubbleDirection);
   const [bubbleRadius, setBubbleRadius] = useState(baseBubbleRadius);
   const [bubbleSpeed, setBubbleSpeed] = useState(baseBubbleSpeed);
@@ -69,9 +72,11 @@ function App() {
   useEffect(() => {
     axios.get('https://j9dund2fhk.execute-api.us-west-1.amazonaws.com/main/weather/')
       .then((response) => {
+        console.log(response)
       })
       .catch((error) => {
         console.error('Error fetching weather data:', error);
+        document.getElementById('footerWeather').innerText = 'Error fetching weather data: ' + error;
       });
       }, []);
 
@@ -79,48 +84,45 @@ function App() {
         const getWeather = async () => {
           const response = await axios.get('https://j9dund2fhk.execute-api.us-west-1.amazonaws.com/main/weather');
           const weather = await response.data.weather.main;
-
-          // const weather = 'Clear';
-
-          const sunsetBg = 'linear-gradient(0deg, rgba(225,119,119,1) 0%, rgba(228,184,101,1) 29%, rgba(245,229,95,1) 62%, rgba(142,142,142,1) 100%)';
+          // const weather = 'Rain';
 
           const detailedWeather = (await response.data.weather.description).charAt(0).toUpperCase() + (await response.data.weather.description).slice(1);
+          const temp = Math.round(await response.data.temp);
+          // const city = await response.data.city;
 
-          document.getElementById('footerWeather').innerText = "Weather: " + detailedWeather;
+          document.getElementById('footerWeather').innerText = detailedWeather + ' ' + temp + ' ' + '°F';
 
           const bodyBackground = document.querySelector('body');
           const currentHour = new Date().getHours();
-          // const currentHour = 8;
-
+          // const currentHour = 1;
+          
             if (currentHour >= 20) {
-            bodyBackground.style.backgroundColor = 'hsla(0, 0%, 17%, 1)';
-            setDayTime('Night');
+              bodyBackground.style.backgroundColor = 'hsla(0, 0%, 17%, 1)';
+              setDayTime('Night');
             } else if (currentHour >= 17 && currentHour < 20) {
-            bodyBackground.style.backgroundColor = '#b08431';
-            setDayTime('Evening');
+              bodyBackground.style.backgroundColor = '#b08431';
+              setDayTime('Evening');
             } else if (currentHour >= 12 && currentHour < 17 ) {
               bodyBackground.style.backgroundColor = ('#5B618A');
               setDayTime('Afternoon')
               console.log(currentHour);
             } else if (currentHour >= 5 && currentHour < 12) {
-            bodyBackground.style.background = sunsetBg;
-            console.log(sunsetBg);
-            setDayTime('Morning');
+              bodyBackground.style.background = 'rgb(220, 120, 120)';
+              setDayTime('Morning');
             } else if (currentHour >= 0 && currentHour < 5) {
               bodyBackground.style.backgroundColor = 'hsla(0, 0%, 17%, 1)'
               setDayTime('Dawn');
             }
              else {
               bodyBackground.style.background = 'black';
-            console.error('Error setting background color');
+              console.error('Error setting background color');
             }
-    
+  
           if (weather === 'Clear' || weather === 'Clouds') {
             setBubbleQty(baseBubbleQty);
             setBubbleDirection(baseBubbleDirection);
             setBubbleRadius(baseBubbleRadius);
             setBubbleSpeed(baseBubbleSpeed);
-            setBubbleColors(['#69a297C4', '#e2856eC4', '#e2856e', '#69a297']);
 
           } else if (weather === 'Rain') {
             setBubbleQty(100);
@@ -158,6 +160,7 @@ function App() {
             setBubbleColors(['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff']);
           } 
         }
+        
     
         getWeather();
       }, [])
@@ -171,7 +174,6 @@ function App() {
         const rainContainer = document.querySelector(".rain")
         if (rainContainer) {
           document.querySelectorAll('.drop').forEach(e => e.remove());
-          // rainContainer.innerHTML = "";
         }
       }
 

@@ -1,6 +1,8 @@
 import '/src/fonts.css';
 import './NavigationBar.css';
+import About from '../About/About';
 import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 function NavigationBar() {
 
@@ -23,7 +25,6 @@ function NavigationBar() {
       let remainingDays = diffDays % 365.25;
       let months = Math.floor(remainingDays / 30);
       remainingDays = Math.floor(remainingDays % 30);
-    console.log(remainingDays);
       if (months === 12) {
         months = 0;
         years += 1;}
@@ -55,23 +56,32 @@ function NavigationBar() {
   }, []);
 
   return (
+
     <div className="noselect" id="navContainer">
-      <div className="titleContainer">
-        <div id="navTitle">Caleb Jones</div>
-        <div id="navBirthday">{dateDiff(dt2, dt1)}</div>
+        <div className="titleContainer">
+          <div id="navTitle">Caleb Jones</div>
+          <div id="navBirthday">{dateDiff(dt2, dt1)}</div>
+          <div id="titleSmiley">{titleSmiley}</div>
       </div>
-      <div id="titleSmiley" onClick={changeSmiley}>{titleSmiley}</div>
       <a>
         <div id="navBackground"></div>
       </a>
       <nav>
         <ul>
-          <a id="navOuter" href="#"><li>Home</li></a>
-          <a id="navInner" href="#about"><li>About</li></a>
-          <a id="navInner" href="#projects"><li>Projects</li></a>
-          <a id="navOuter" href="#contact"><li>Contact</li></a>
+            <Link id="navOuter" to="/"><li>Home</li></Link>
+            <Link id="navInner" to="#about"><li>About</li></Link>
+            <Link id="navInner" to="#projects"><li>Projects</li></Link>
+            <Link id="navOuter" to="#contact"><li>Contact</li></Link>
+
+          {/* <Routes> 
+            <Route id="navOuter" to="../ContentArea/ContentArea.jsx">Home</Route>
+            <Route id="navInner" to="">About</Route>
+            <Route id="navInner" to="">Projects</Route>
+            <Route id="navOuter" to="">Contact</Route>
+          </Routes> */}
         </ul>
       </nav>
+
     </div>
   );
 }

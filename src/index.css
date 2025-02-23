@@ -17,7 +17,7 @@
 body {
   margin: 0;
   justify-content: center;
-  /* background-color: #CED3DC; */
+  background-color: #212121; /* Background color if weather is not detected */
   transition: background-color 1s ease-in-out;
   height: 100vh;
 }
@@ -27,14 +27,14 @@ body {
   margin: auto;
   padding: 0 10px;
   background-color: #3f403fb6;
-  width: fit-content;
-  /* width: 80%; */
+  width: 150px;
   border-radius: 10px;
 }
 
 #socialMedia {
   border-bottom: #CED3DC 1px solid;
   text-align: center;
+  margin-top: 20px;
 }
 
 #socialMedia i{
@@ -58,3 +58,6 @@ body {
   text-align: center;
 }
 
+#footerWeather {
+  margin-bottom: 5px;
+}

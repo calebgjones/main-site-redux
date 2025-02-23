@@ -1,6 +1,5 @@
 import './ContentArea.css';
 import Content from './Content.js';
-import { useState, useEffect } from 'react';
 
 
 function ContentArea() {

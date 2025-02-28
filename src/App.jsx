@@ -100,10 +100,10 @@ function App() {
               bodyBackground.style.backgroundColor = 'hsla(0, 0%, 17%, 1)';
               setDayTime('Night');
             } else if (currentHour >= 17 && currentHour < 20) {
-              bodyBackground.style.backgroundColor = '#b08431';
+              bodyBackground.style.background = 'rgb(80,80,80)';
               setDayTime('Evening');
             } else if (currentHour >= 12 && currentHour < 17 ) {
-              bodyBackground.style.backgroundColor = ('#5B618A');
+              bodyBackground.style.background = 'rgb(120,80,120)';
               setDayTime('Afternoon')
               console.log(currentHour);
             } else if (currentHour >= 5 && currentHour < 12) {

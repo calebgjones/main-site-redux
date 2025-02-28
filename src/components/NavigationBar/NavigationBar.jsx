@@ -61,7 +61,7 @@ function NavigationBar() {
         <div className="titleContainer">
           <div id="navTitle">Caleb Jones</div>
           <div id="navBirthday">{dateDiff(dt2, dt1)}</div>
-          <div id="titleSmiley">{titleSmiley}</div>
+          <div id="titleSmiley"><content>{titleSmiley}</content></div>
       </div>
       <a>
         <div id="navBackground"></div>

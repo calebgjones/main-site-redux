@@ -119,7 +119,20 @@ a {
     }
 
     #titleSmiley {
-        visibility: hidden;
+        margin: auto;
+        left:47px;
+        bottom: 96px;
+    }
+
+    Content {
+        position: inherit;
+        font-size: 50pt;
+        z-index: -1;
+        color: #1616168a;
+        border-radius: 100%;
+        padding: 5px;
+        height: 70px;
+        width: 70px;
     }
 
     #navBirthday {

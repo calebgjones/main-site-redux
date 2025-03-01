@@ -241,9 +241,8 @@ function App() {
           <div id="footerDayTime">{dayTime}</div>
         </div>
       </div>
-
     </div>
-
+    
   </>
   )
 }

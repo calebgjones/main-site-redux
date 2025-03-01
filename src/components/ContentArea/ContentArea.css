@@ -13,12 +13,13 @@ div[class^="contentContainer"]{
     position: relative;
     top: 5em;
     background-color: #aaa8c2ee;
-    width: 95%;
+    width: 85%;
     padding: 5px;
     margin-top: 12px;
     height: auto;
     border: 3px solid black;
     border-radius: 8px;
+    transition: width .5s ease-in-out;
 }
 
 .contentHeader {
@@ -31,4 +32,13 @@ div[class^="contentContainer"]{
     color: black;
     margin: 0 0 40px 0;
     font-size: 15pt;
+}
+
+
+@media screen and (width < 700px) {
+
+    div[class^="contentContainer"]{
+        width: 95%;
+    }
+
 }

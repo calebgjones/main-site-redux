@@ -61,11 +61,10 @@ function NavigationBar() {
         <div className="titleContainer">
           <div id="navTitle">Caleb Jones</div>
           <div id="navBirthday">{dateDiff(dt2, dt1)}</div>
-          <div id="titleSmiley"><content>{titleSmiley}</content></div>
+          <div id="titleSmiley"><smileyContent>{titleSmiley}</smileyContent></div>
       </div>
-      <a>
+      <a href='https://www.calebdagoat.com/' target='_blank'><div id="goatedLink">Goated.</div></a>
         <div id="navBackground"></div>
-      </a>
       <nav>
         <ul>
             <Link id="navOuter" to="/"><li>Home</li></Link>
@@ -80,6 +79,7 @@ function NavigationBar() {
             <Route id="navOuter" to="">Contact</Route>
           </Routes> */}
         </ul>
+        
       </nav>
 
     </div>

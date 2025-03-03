@@ -63,7 +63,7 @@ function NavigationBar() {
           <div id="navBirthday">{dateDiff(dt2, dt1)}</div>
           <div id="titleSmiley"><smileyContent>{titleSmiley}</smileyContent></div>
       </div>
-      <a href='https://www.calebdagoat.com/' target='_blank'><div id="goatedLink">Goated.</div></a>
+      <a href='https://www.calebdagoat.com/'><div id="goatedLink">Goated.</div></a>
         <div id="navBackground"></div>
       <nav>
         <ul>

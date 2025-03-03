@@ -88,9 +88,11 @@ function App() {
 
           const detailedWeather = (await response.data.weather.description).charAt(0).toUpperCase() + (await response.data.weather.description).slice(1);
           const temp = Math.round(await response.data.temp);
-          // const city = await response.data.city;
+          const tempCelcius = Math.round((temp - 32) * 5/9);
+          const city = await response.data.city;
 
-          document.getElementById('footerWeather').innerText = detailedWeather + ' ' + temp + ' ' + '°F';
+          document.getElementById('footerTemp').innerText = `${temp}°F` + ' / ' + `${tempCelcius}°C`;
+          document.getElementById('footerWeather').innerText = detailedWeather;
 
           const bodyBackground = document.querySelector('body');
           const currentHour = new Date().getHours();
@@ -236,6 +238,7 @@ function App() {
       </div>
     
         <div className="footerData">
+          <div id="footerTemp"></div>
           <div id="footerWeather"></div>
           <div id="footerTime"></div>
           <div id="footerDayTime">{dayTime}</div>

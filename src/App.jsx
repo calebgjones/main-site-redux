@@ -107,7 +107,6 @@ function App() {
             } else if (currentHour >= 12 && currentHour < 17 ) {
               bodyBackground.style.background = 'rgb(120,80,120)';
               setDayTime('Afternoon')
-              console.log(currentHour);
             } else if (currentHour >= 5 && currentHour < 12) {
               bodyBackground.style.background = 'rgb(220, 120, 120)';
               setDayTime('Morning');

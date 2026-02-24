@@ -29,7 +29,7 @@ function NavigationBar() {
       <div className="titleContainer">
         <div id="navTitle">Caleb Jones</div>
         <div id="navBirthday">{DateDiff(dt2, dt1)}</div>
-        <div id="titleSmiley"><smileyContent>{titleSmiley}</smileyContent></div>
+        <div id="titleSmiley"><div id="smileyContent">{titleSmiley}</div></div>
       </div>
       <a href='https://www.calebdagoat.com/'><div id="goatedLink">Goated.</div></a>
       <div id="navBackground"></div>

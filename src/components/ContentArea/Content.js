@@ -36,6 +36,11 @@ const Content = [
                 id: 1,
                 title: "music player",
                 url: "https://caleb.dbfyvwtdn5qfo.amplifyapp.com/#"
+            },
+            {
+                id: 2,
+                title: "Beholder",
+                url: "https://master.dvsjyqutxtfj9.amplifyapp.com/"
             }
         ]
     },
@@ -64,28 +69,32 @@ const Content = [
         iframes: [
         ]
     }
-    // ,
-    // {
-    //     id: 4,
-    //     section: "iFrames",
-    //     header: "iFrames",
-    //     body: "Check out some iFrames!",
-    //     links: [
-    //         {
-    //             id: 0,
-    //             title: "caleb da goat",
-    //             url: "https://www.calebdagoat.com/"
-    //         },
-    //         {
-    //             id: 1,
-    //             title: "music player",
-    //             url: "https://caleb.dbfyvwtdn5qfo.amplifyapp.com/#"
-    //         }
-    //     ],
-    //     iframes: [
-            
-    //     ]
-    // }
+    ,
+    {
+        // id: 4,
+        // section: "iFrames",
+        // header: "iFrames",
+        // body: "Check out some iFrames!",
+        // links: [
+        //     {
+        //         id: 0,
+        //         title: "caleb da goat",
+        //         url: "https://www.calebdagoat.com/"
+        //     },
+        //     {
+        //         id: 1,
+        //         title: "music player",
+        //         url: "https://caleb.dbfyvwtdn5qfo.amplifyapp.com/#"
+        //     }
+        // ],
+        // iframes: [
+        //     {
+        //         id: 0,
+        //         title: "caleb da goat",
+        //         url: "https://www.calebdagoat.com/"
+        //     },
+        // ]
+    }
 ];
 
 export default Content;

@@ -136,7 +136,7 @@ a {
         top: 38px;
     }
 
-    smileyContent {
+    .smileyContent {
         position: inherit;
         font-size: 30pt;
         z-index: -1;

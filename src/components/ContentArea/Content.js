@@ -41,6 +41,11 @@ const Content = [
                 id: 2,
                 title: "Beholder",
                 url: "https://master.dvsjyqutxtfj9.amplifyapp.com/"
+            },
+            {
+                id: 3,
+                title: "Support Dashboard",
+                url: "https://main.d3qbgduqjmtd49.amplifyapp.com/"
             }
         ]
     },
